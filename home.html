@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkyWay Home</title>
+    <link rel="stylesheet" href="home.css">
+</head>
+<body>
+    <div class="navbar">
+        <img src="sky.jpg" alt="SkyWay Logo"> <!-- Replace with your logo -->
+        <div class="links">
+            <a href="home.html">Home</a>
+            <a href="myprofile.html">My Profile</a>
+            <a href="myTrips.html">My Trips</a>
+            <a href="index.html">Logout</a>
+        </div>
+    </div>
+    <div class="main-content">
+        <div class="welcome-message">
+            <h1>Welcome to SkyWay!</h1>
+            <p>Your journey starts here. Navigate through the links above to explore.</p>
+        </div>
+        <div class="form-container">
+            <h2>Book Your Flight</h2>
+            <form id="flightSearchForm">
+                <div class="form-row">
+                    <label for="origin">Origin</label>
+                    <input type="text" id="origin" name="origin" required>
+                </div>
+                <div class="form-row">
+                    <label for="destination">Destination</label>
+                    <input type="text" id="destination" name="destination" required>
+                </div>
+                <div class="form-row">
+                    <label for="departureDate">Departure Date</label>
+                    <input type="date" id="departureDate" name="departureDate" required>
+                </div>
+                <div class="form-row">
+                    <label for="numberOfTravellers">Number of Travelers</label>
+                    <input type="number" id="numberOfTravellers" name="numberOfTravellers" min="1" required>
+                </div>
+                <div class="form-row">
+                    <label for="class">Class</label>
+                    <select id="class" name="class" required>
+                        <option value="" disabled selected>Select class</option>
+                        <option value="economy">Economy</option>
+                        <option value="business">Business</option>
+                        <option value="executive">Executive</option>
+                    </select>
+                </div>
+                <div class="form-row">
+                    <button type="submit">Search</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

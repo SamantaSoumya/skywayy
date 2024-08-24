@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LogIn</title>
+    <link rel="stylesheet" href="logIn.css">
+</head>
+
+<body>
+    <div class="login-container">
+        <h2>WELCOME TO SkyWay</h2>
+        <h5>Log In Page</h5>
+        <form id="loginForm">
+            <label for="userId">User ID</label>
+            <input type="text" id="userId" name="userId" required>
+
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required>
+
+            <button type="submit">Log in</button>
+        </form>
+        <p>New User? <a href="signUp.html">Register Yourself</a></p>
+    </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+            const validUserId = 'user123';
+            const validPassword = 'pass123';
+
+            const userId = document.getElementById('userId').value;
+            const password = document.getElementById('password').value;
+
+            if (userId === validUserId && password === validPassword) {
+                window.location.href = 'home.html';
+            } else {
+                alert('You are not registered yet. Please register yourself first.');
+                window.location.href = 'signUp.html';
+            }
+        });
+    </script>
+</body>
+
+</html>

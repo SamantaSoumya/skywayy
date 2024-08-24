@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile</title>
+    <link rel="stylesheet" href="home.css">
+    <link rel="stylesheet" href="myProfile.css">
+</head>
+<body>
+    <div class="navbar">
+        <img src="sky.jpg" alt="SkyWay Logo">
+        <div class="links">
+            <a href="home.html">Home</a>
+            <a href="myprofile.html" class="active">My Profile</a>
+            <a href="mytrips.html">My Trips</a>
+            <a href="index.html">Logout</a>
+        </div>
+    </div>
+    <div class="main-content">
+        <div class="profile-details">
+            <h2>Profile Details</h2>
+            <div id="userInfo">
+                <!-- User details will be populated here -->
+                <p><strong>First Name:</strong> <span id="displayFirstName">John</span></p>
+                <p><strong>Last Name:</strong> <span id="displayLastName">Doe</span></p>
+                <p><strong>Date of Birth:</strong> <span id="displayDob">1990-01-01</span></p>
+                <p><strong>Email:</strong> <span id="displayEmail">john.doe@example.com</span></p>
+                <p><strong>Address:</strong> <span id="displayAddress">123 Main St, City, Country</span></p>
+                <p><strong>Contact Number:</strong> <span id="displayContactNumber">1234567890</span></p>
+                <button id="editProfileBtn">Edit Profile</button>
+            </div>
+            <div id="editProfileForm" class="form-container" style="display: none;">
+                <h2>Edit Profile</h2>
+                <form id="editForm" method="POST">
+                    <label for="editFirstName">First Name</label>
+                    <input type="text" id="editFirstName" name="firstName" required>
+
+                    <label for="editLastName">Last Name</label>
+                    <input type="text" id="editLastName" name="lastName" required>
+
+                    <label for="editDob">Date of Birth</label>
+                    <input type="date" id="editDob" name="dob" required>
+
+                    <label for="editEmail">Email ID</label>
+                    <input type="email" id="editEmail" name="email" required>
+
+                    <label for="editAddress">Address</label>
+                    <textarea id="editAddress" name="address" rows="4" required></textarea>
+
+                    <label for="editContactNumber">Contact Number</label>
+                    <input type="tel" id="editContactNumber" name="contactNumber" pattern="[0-9]{10}" required>
+
+                    <button type="submit">Save Changes</button>
+                    <button type="button" id="cancelEditBtn">Cancel</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+    const editProfileBtn = document.getElementById('editProfileBtn');
+    const editProfileForm = document.getElementById('editProfileForm');
+    const userInfo = document.getElementById('userInfo');
+    const cancelEditBtn = document.getElementById('cancelEditBtn');
+    const editForm = document.getElementById('editForm');
+
+    // Show edit form
+    editProfileBtn.addEventListener('click', () => {
+        userInfo.style.display = 'none';
+        editProfileForm.style.display = 'block';
+
+        // Populate edit form with current values
+        document.getElementById('editFirstName').value = document.getElementById('displayFirstName').innerText;
+        document.getElementById('editLastName').value = document.getElementById('displayLastName').innerText;
+        document.getElementById('editDob').value = document.getElementById('displayDob').innerText;
+        document.getElementById('editEmail').value = document.getElementById('displayEmail').innerText;
+        document.getElementById('editAddress').value = document.getElementById('displayAddress').innerText;
+        document.getElementById('editContactNumber').value = document.getElementById('displayContactNumber').innerText;
+    });
+
+    // Cancel edit
+    cancelEditBtn.addEventListener('click', () => {
+        editProfileForm.style.display = 'none';
+        userInfo.style.display = 'block';
+    });
+
+    // Handle form submission
+    editForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+        const firstName = document.getElementById('editFirstName').value.trim();
+        const lastName = document.getElementById('editLastName').value.trim();
+        const dob = document.getElementById('editDob').value;
+        const email = document.getElementById('editEmail').value.trim();
+        const address = document.getElementById('editAddress').value.trim();
+        const contactNumber = document.getElementById('editContactNumber').value.trim();
+
+        // Validate and update profile details
+        if (firstName.length < 2 || lastName.length < 2) {
+            alert('Names must be at least 2 characters long.');
+            return;
+        }
+
+        const today = new Date();
+        const birthDate = new Date(dob);
+        const age = today.getFullYear() - birthDate.getFullYear();
+        const month = today.getMonth() - birthDate.getMonth();
+        if (month < 0 || (month === 0 && today.getDate() < birthDate.getDate())) {
+            age--;
+        }
+
+        if (age < 18) {
+            alert('You must be at least 18 years old.');
+            return;
+        }
+
+        const emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,6}$/;
+        if (!email.match(emailPattern)) {
+            alert('Please enter a valid email address.');
+            return;
+        }
+
+        if (contactNumber.length !== 10 || isNaN(contactNumber)) {
+            alert('Contact number must be 10 digits long.');
+            return;
+        }
+
+        // Update displayed user info
+        document.getElementById('displayFirstName').innerText = firstName;
+        document.getElementById('displayLastName').innerText = lastName;
+        document.getElementById('displayDob').innerText = dob;
+        document.getElementById('displayEmail').innerText = email;
+        document.getElementById('displayAddress').innerText = address;
+        document.getElementById('displayContactNumber').innerText = contactNumber;
+
+        // Hide edit form and show updated info
+        editProfileForm.style.display = 'none';
+        userInfo.style.display = 'block';
+
+        alert('Profile updated successfully!');
+    });
+});
+
+</script>
+</html>
