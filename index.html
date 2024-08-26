@@ -25,15 +25,37 @@
     </div>
 
     <script>
+        // Static valid user IDs and passwords for testing
+        const validCredentials = [
+            { userId: '12345', password: 'pass123' },
+            { userId: '67890', password: 'secret12' },
+            { userId: '54321', password: 'mypassword' }
+        ];
+
         document.getElementById('loginForm').addEventListener('submit', function (event) {
             event.preventDefault();
-            const validUserId = 'user123';
-            const validPassword = 'pass123';
 
             const userId = document.getElementById('userId').value;
             const password = document.getElementById('password').value;
 
-            if (userId === validUserId && password === validPassword) {
+            // Check if the userId is valid: exactly 5 digits
+            const isValidUserId = /^\d{5}$/.test(userId);
+
+            // Check if the password is valid: 6-30 characters
+            const isValidPassword = password.length >= 6 && password.length <= 30;
+
+            let credentialsMatch = validCredentials.some(
+                credential => credential.userId === userId && credential.password === password
+            );
+
+            // Logic to handle different invalid scenarios
+            if (!isValidUserId && !isValidPassword) {
+                alert('Both ID and password are not valid.');
+            } else if (!isValidUserId) {
+                alert('User ID is not valid.');
+            } else if (!isValidPassword) {
+                alert('Password is not valid.');
+            } else if (credentialsMatch) {
                 window.location.href = 'home.html';
             } else {
                 alert('You are not registered yet. Please register yourself first.');

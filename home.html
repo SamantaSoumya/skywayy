@@ -8,14 +8,22 @@
 </head>
 <body>
     <div class="navbar">
-        <img src="sky.jpg" alt="SkyWay Logo"> <!-- Replace with your logo -->
+        <img src="sky.jpg" alt="SkyWay Logo"> 
         <div class="links">
             <a href="home.html">Home</a>
             <a href="myprofile.html">My Profile</a>
-            <a href="myTrips.html">My Trips</a>
+            <div class="dropdown">
+                <a  class="dropdown-toggle">My Trips</a>
+                <div class="dropdown-menu">
+                    <a href="upcomingTrip.html">Upcoming</a>
+                    <a href="cancelledTrip.html">Cancelled</a>
+                    <a href="completed_trip.html">Completed</a>
+                </div>
+            </div>
             <a href="index.html">Logout</a>
         </div>
     </div>
+    
     <div class="main-content">
         <div class="welcome-message">
             <h1>Welcome to SkyWay!</h1>
