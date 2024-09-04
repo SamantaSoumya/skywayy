@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Your Flight</title>
+    <link rel="stylesheet" href="home.css">
+    <link rel="stylesheet" href="book.css">
+    <style>
+        /* Basic styling for the page */
+        .flight-details {
+            width: 80%;
+            background-color: #f2f2f2;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        .flight-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .carrier-logo {
+            width: 50px;
+            height: 50px;
+            margin-right: 15px;
+        }
+        .flight-summary {
+            display: flex;
+            align-items: center;
+            font-size: 18px;
+        }
+        .flight-summary div {
+            margin: 0 10px;
+            text-align: center;
+        }
+        .flight-summary .arrow {
+            font-size: 24px;
+            font-weight: bold;
+            color: #555;
+        }
+        .ticket-info {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .book-button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .book-button:hover {
+            background-color: #45a049;
+        }
+        .additional-info {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+            font-size: 16px;
+        }
+        
+        /* Modal styling */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.5); /* Black background with transparency */
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 300px;
+            border-radius: 8px;
+        }
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .close:hover, .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .confirm-button {
+            background-color: #008CBA;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .confirm-button:hover {
+            background-color: #007bb5;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <img src="sky.jpg" alt="SkyWay Logo"> 
+        <div class="links">
+            <a href="home.html">Home</a>
+            <a href="myProfile.html">My Profile</a>
+            <div class="dropdown">
+                <a class="dropdown-toggle">My Trips</a>
+                <div class="dropdown-menu">
+                    <a href="upcomingTrip.html">Upcoming</a>
+                    <a href="cancelledTrip.html">Cancelled</a>
+                    <a href="completed_trip.html">Completed</a>
+                </div>
+            </div>
+            <a href="index.html">Logout</a>
+        </div>
+    </div>
+    
+    <div class="main-content">
+        <h2>Flight Search Results</h2>
+        <div class="flight-details">
+            <div class="flight-info">
+                <div style="display: flex;">
+                    <img src="bok.jpg" alt="Carrier Logo" class="carrier-logo">
+                    <h3 id="carrierName">Indigo</h3>
+                </div>
+                <div class="flight-summary">
+                    <div>
+                        <p id="origin">Mumbai</p>
+                        <p id="originTime">08:00 AM</p>
+                    </div>
+                    <div class="arrow">→</div>
+                    <div>
+                        <p id="destination">Kolkata</p>
+                        <p id="destinationTime">12:00 PM</p>
+                    </div>
+                </div>
+                <p><strong>Non-Stop</strong></p>
+            </div>
+            <div class="additional-info">
+                <p><strong>Total Fare:</strong> <span id="totalFare">6000</span></p>
+                <div class="ticket-info">
+                    <button class="book-button" onclick="openModal()">Book Now</button>
+                </div>
+                <p><strong>Total Available Tickets:</strong> <span id="totalTickets">20</span></p>
+            </div>
+        </div>
+        <div class="flight-details">
+            <div class="flight-info">
+                <div style="display: flex;">
+                    <img src="bok.jpg" alt="Carrier Logo" class="carrier-logo">
+                    <h3 id="carrierName">Indigo</h3>
+                </div>
+                <div class="flight-summary">
+                    <div>
+                        <p id="origin">Mumbai</p>
+                        <p id="originTime">08:00 AM</p>
+                    </div>
+                    <div class="arrow">→</div>
+                    <div>
+                        <p id="destination">Kolkata</p>
+                        <p id="destinationTime">12:00 PM</p>
+                    </div>
+                </div>
+                <p><strong>Non-Stop</strong></p>
+            </div>
+            <div class="additional-info">
+                <p><strong>Total Fare:</strong> <span id="totalFare">6000</span></p>
+                <div class="ticket-info">
+                    <button class="book-button" onclick="openModal()">Book Now</button>
+                </div>
+                <p><strong>Total Available Tickets:</strong> <span id="totalTickets">20</span></p>
+            </div>
+        </div>
+        <div class="flight-details">
+            <div class="flight-info">
+                <div style="display: flex;">
+                    <img src="bok.jpg" alt="Carrier Logo" class="carrier-logo">
+                    <h3 id="carrierName">Indigo</h3>
+                </div>
+                <div class="flight-summary">
+                    <div>
+                        <p id="origin">Mumbai</p>
+                        <p id="originTime">08:00 AM</p>
+                    </div>
+                    <div class="arrow">→</div>
+                    <div>
+                        <p id="destination">Kolkata</p>
+                        <p id="destinationTime">12:00 PM</p>
+                    </div>
+                </div>
+                <p><strong>Non-Stop</strong></p>
+            </div>
+            <div class="additional-info">
+                <p><strong>Total Fare:</strong> <span id="totalFare">6000</span></p>
+                <div class="ticket-info">
+                    <button class="book-button" onclick="openModal()">Book Now</button>
+                </div>
+                <p><strong>Total Available Tickets:</strong> <span id="totalTickets">20</span></p>
+            </div>
+        </div>
+        
+    </div>
+
+    <!-- Modal for booking -->
+    <div id="bookingModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h3>Select Number of Seats</h3>
+            <input type="number" id="seats" min="1" max="20" value="1" style="height: 30px;
+    width: 100px;">
+            <button class="confirm-button" onclick="confirmBooking()">Confirm Booking</button>
+        </div>
+    </div>
+
+    <script>
+        // Function to open the modal
+        function openModal() {
+            document.getElementById("bookingModal").style.display = "block";
+        }
+
+        // Function to close the modal
+        function closeModal() {
+            document.getElementById("bookingModal").style.display = "none";
+        }
+
+        // Function to confirm booking
+        function confirmBooking() {
+            const seats = document.getElementById("seats").value;
+            alert(`You have successfully booked ${seats} seat(s)!`);
+
+            closeModal();
+            window.location.href = 'home.html';
+            // Further booking logic goes here (e.g., sending data to the server)
+        }
+
+        // Close modal if user clicks anywhere outside of it
+        window.onclick = function(event) {
+            if (event.target == document.getElementById("bookingModal")) {
+                closeModal();
+            }
+        }
+    </script>
+</body>
+</html>

@@ -58,10 +58,16 @@
                     </select>
                 </div>
                 <div class="form-row">
-                    <button type="submit">Search</button>
+                    <button id = "search" type="submit">Search</button>
                 </div>
             </form>
         </div>
     </div>
+    <script>
+        document.getElementById("search").addEventListener('submit', function (event) {
+            event.preventDefault();
+            window.location.href = 'book.html';
+        })
+    </script>
 </body>
 </html>
